@@ -3,6 +3,7 @@ import Layout from "./components/Layout"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Jobs from "./pages/Jobs"
+import NotFound from "./pages/NotFound"
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path="contato" element={<Contact />} />
         <Route path="trabalhe-conosco" element={<Jobs />} />
       </Route>
-      <Route path="*" element={<h1>Página não encontrada</h1>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
