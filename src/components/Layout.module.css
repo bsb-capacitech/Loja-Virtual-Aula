@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #343a40;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+.mainContent {
+    flex: 1;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
