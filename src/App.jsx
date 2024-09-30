@@ -5,6 +5,7 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Jobs from "./pages/Jobs"
 import NotFound from "./pages/NotFound"
+import Products from "./pages/Products"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="sobre" element={<About />} />
         <Route path="contato" element={<Contact />} />
         <Route path="trabalhe-conosco" element={<Jobs />} />
+        <Route path="produtos" element={<Products />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -7,7 +7,7 @@ function Home() {
                     <p>
                     Encontre os melhores produtos com ofertas exclusivas. Explore nossas categorias e descubra grandes promoções!
                     </p>
-                    <a href="/products" className="btn btn-primary">Veja nossos produtos</a>
+                    <a href="/produtos" className="btn btn-primary">Veja nossos produtos</a>
                 </div>
             </div>
             <div className="row">
