@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 function Products() {
     const navigate = useNavigate()
@@ -64,7 +65,7 @@ function Products() {
 
 
     if (loading) {
-        return <p>Carregando...</p>
+        return <Loader />
     }
 
     return (

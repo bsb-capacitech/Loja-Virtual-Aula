@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 function ProductDetails() {
     const [product, setProduct] = useState(null)
@@ -16,7 +17,7 @@ function ProductDetails() {
     }, [])
 
     if (loading) {
-        return <p>Carregando...</p>
+        return <Loader />
     }
 
     return(
