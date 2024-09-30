@@ -24,7 +24,7 @@ function Layout() {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <NavLink
-                                className={`nav-link ${({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}`}
+                                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                                 to="/sobre"
                             >
                                 Sobre
@@ -32,7 +32,7 @@ function Layout() {
                         </li>
                         <li className="nav-item">
                             <NavLink
-                                className={`nav-link ${({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}`}
+                                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                                 to="/contato"
                             >
                                 Contato
@@ -40,7 +40,7 @@ function Layout() {
                         </li>
                         <li className="nav-item">
                             <NavLink
-                                className={`nav-link ${({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}`}
+                                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                                 to="/trabalhe-conosco"
                             >
                                 Trabalhe Conosco

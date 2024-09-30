@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
+import QuickViewModal from '../components/QuickViewModal'
 
 function Products() {
     const navigate = useNavigate()
@@ -15,6 +16,8 @@ function Products() {
         Number(query.get('minPreco')) || 0,
         Number(query.get('maxPreco')) || 1000,
     ])
+    const [showModal, setShowModal] = useState(false)
+    const [selectedProduct, setselectedProduct] = useState(null)
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products/categories')
@@ -50,6 +53,15 @@ function Products() {
             pathname: location.pathname,
             seacrh: `?categoria=${e.target.value}&minPreco=${priceRange[0]}&maxPreco=${priceRange[1]}`
         })
+    }
+
+    const handleQuickView = (product) => {
+        setselectedProduct(product)
+        setShowModal(true)
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false)
     }
 
 
@@ -112,18 +124,39 @@ function Products() {
                     filteredProducts.map((product) => (
                         <div className="col-md-3 mb-3" key={product.id}>
                             <div className="card h-100">
-                                <img src={product.image} alt={product.title} className="card-img-top" />
+                                <img src={product.image} alt={product.title} className="card-img-top p-5" />
 
                                 <div className="card-body">
                                     <h5 className="card-title">{product.title}</h5>
                                     <p className="card-text">R$ {product.price}</p>
-                                    <a href={`/produto/${product.id}`} className="btn btn-primary">Ver detalhes</a>
+                                    <button
+                                        className="btn btn-primary my-2"
+                                        onClick={() => handleQuickView(product)}
+                                    >
+                                        <span role="img" aria-label="High Voltage Emoji">⚡ </span>
+                                        Detalhes Rápidos
+                                    </button>
+                                    <a href={`/produto/${product.id}`} className="btn btn-outline-primary">
+                                        <span role="img" aria-label="Plus Emoji">➕ </span>
+                                        Mais Detalhes
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     ))
                 }
             </div>
+
+            {
+                selectedProduct && (
+                    <QuickViewModal
+                        show={showModal}
+                        onClose={handleCloseModal}
+                        product={selectedProduct}
+                    />
+                )
+            }
+
         </div>
     )
 }
