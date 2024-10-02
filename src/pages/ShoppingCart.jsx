@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom"
-import PropTypes from "prop-types"
+import { useCart } from "../hooks/useCart"
 
-function ShoppingCart({ cartItems, increaseQuantity, decreaseQuantity, removeFromCart }) {
+function ShoppingCart() {
+    const { cartItems, updateQuantity, removeFromCart } = useCart
+
+    const handleUpdateQuantity = (id, typeAction) => {
+        updateQuantity(id, typeAction)
+    }
+    
+    const handleRemoveFromCart = (id) => {
+        removeFromCart(id)
+    }
+
     const calcTotal = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)
     }
@@ -16,14 +26,14 @@ function ShoppingCart({ cartItems, increaseQuantity, decreaseQuantity, removeFro
                             <div>
                                 <h5>{item.title}</h5>
                                 <div className="d-flex align-items-center">
-                                    <buttton className="btn btn-secondary" onClick={() => decreaseQuantity(item.id)}>-</buttton>
+                                    <buttton className="btn btn-secondary" onClick={handleUpdateQuantity(item.id, 'decrease')}>-</buttton>
                                     <span className="mx-2">{item.quantity}</span>
-                                    <buttton className="btn btn-secondary" onClick={() => increaseQuantity(item.id)}>+</buttton>
+                                    <buttton className="btn btn-secondary" onClick={handleUpdateQuantity(item.id, 'increase')}>+</buttton>
                                 </div>
                             </div>
 
                             <span>R$ {(item.price * item.quantity).toFixed(2)}</span>
-                            <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>Remover</button>
+                            <button className="btn btn-danger" onClick={handleRemoveFromCart(item.id)}>Remover</button>
                         </li>
                     ))
                 }
@@ -36,13 +46,6 @@ function ShoppingCart({ cartItems, increaseQuantity, decreaseQuantity, removeFro
             </Link>
         </div>
     )
-}
-
-ShoppingCart.propTypes = {
-    cartItems: PropTypes.array.isRequired,
-    increaseQuantity: PropTypes.func.isRequired,
-    decreaseQuantity: PropTypes.func.isRequired,
-    removeFromCart: PropTypes.func.isRequired,
 }
 
 export default ShoppingCart

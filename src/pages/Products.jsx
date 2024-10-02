@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import PropTypes from "prop-types"
+import { useCart } from '../hooks/useCart'
 import Loader from '../components/Loader'
 import QuickViewModal from '../components/QuickViewModal'
 
-function Products({ addToCart }) {
+function Products() {
+    const { addToCart } = useCart
     const navigate = useNavigate()
     const location = useLocation()
     const query = new URLSearchParams(location.search)
@@ -161,10 +162,6 @@ function Products({ addToCart }) {
 
         </div>
     )
-}
-
-Products.propTypes = {
-    addToCart: PropTypes.func.isRequired,
 }
 
 export default Products

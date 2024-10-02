@@ -1,7 +1,7 @@
 import { createContext, useState } from "react"
 import PropTypes from "prop-types"
 
-const CartContext = createContext()
+export const CartContext = createContext()
 
 export function CartProviver({ children }) {
     const [cartItems, setCartItems] = useState([]);

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { useCart } from '../hooks/useCart'
 import Loader from '../components/Loader'
 
-function ProductDetails({ addToCart }) {
+function ProductDetails() {
+    const { addToCart } = useCart
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const { id } = useParams()
@@ -30,10 +31,6 @@ function ProductDetails({ addToCart }) {
             <button className="btn btn-success" onClick={() => addToCart(product)}>Adicionar ao Carrinho</button>
         </div>
     )
-}
-
-ProductDetails.propTypes = {
-    addToCart: PropTypes.func.isRequired,
 }
 
 export default ProductDetails
