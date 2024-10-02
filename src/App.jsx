@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound"
 import Products from "./pages/Products"
 import ProductDetails from "./pages/ProductDetails"
 import ShoppingCart from "./pages/ShoppingCart"
+import Login from "./pages/Login"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="produtos" element={<Products />} />
             <Route path="produto/:id" element={<ProductDetails />} />
             <Route path="carrinho" element={<ShoppingCart />} />
+            <Route path="login" element={<Login />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

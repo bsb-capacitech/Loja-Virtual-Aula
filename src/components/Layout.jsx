@@ -1,9 +1,11 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
+import { useAuth } from '../hooks/useAuth'
 import styles from './Layout.module.css'
 
 function Layout() {
     const { cartItems } = useCart()
+    const { user, logout } = useAuth()
 
     return (
         <div className="d-flex flex-column min-vh-100">
@@ -61,6 +63,25 @@ function Layout() {
                                 )
                             }
                         </NavLink>
+                    </div>
+
+                    <div className="d-flex align-items-center">
+                        {
+                            user ? (
+                                <>
+                                    <span className="navbar-text text-ligth me-3">
+                                        Olá, {user.displayName || user.email}
+                                    </span>
+                                    <button className="btn btn-outline-light" onClick={logout}>
+                                        Sair
+                                    </button>
+                                </>
+                            ) : (
+                                <NavLink className="btn btn-outline-ligth mx-3" to="/login">
+                                    Login
+                                </NavLink>
+                            )
+                        }
                     </div>
                 </div>
             </nav>
