@@ -1,4 +1,40 @@
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import Loader from "../components/Loader"
+
 function Home() {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const categories = ["electronics", "jewelery", "men's clothing", "women's clothing"]
+
+    const fetchProductsByCategory = async () => {
+        try {
+            const fetchedProducts = []
+
+            for (const category of categories) {
+                const response = await fetch(`https://fakestoreapi.com/products/category/${category}`)
+                const data = await response.json()
+
+                fetchedProducts.push(data[0])
+            }
+
+            setProducts(fetchedProducts)
+        } catch (error) {
+            console.error("Erro ao buscar produtos: ", error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchProductsByCategory()
+    }, [])
+
+
+    if (loading) {
+       return <Loader />
+    }
+
     return (
         <div className="container mt-5">
             <div className="row mb-4">
@@ -7,40 +43,23 @@ function Home() {
                     <p>
                     Encontre os melhores produtos com ofertas exclusivas. Explore nossas categorias e descubra grandes promoções!
                     </p>
-                    <a href="/produtos" className="btn btn-primary">Veja nossos produtos</a>
+                    <Link to="/produtos" className="btn btn-primary">Veja nossos produtos</Link>
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-4">
-                <div className="card">
-                    <img src="https://via.placeholder.com/150" className="card-img-top" alt="Produto 1" />
-                    <div className="card-body">
-                    <h5 className="card-title">Produto 1</h5>
-                    <p className="card-text">Descrição breve do produto 1.</p>
-                    <a href="#" className="btn btn-success">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-                </div>
-                <div className="col-md-4">
-                <div className="card">
-                    <img src="https://via.placeholder.com/150" className="card-img-top" alt="Produto 2" />
-                    <div className="card-body">
-                    <h5 className="card-title">Produto 2</h5>
-                    <p className="card-text">Descrição breve do produto 2.</p>
-                    <a href="#" className="btn btn-success">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-                </div>
-                <div className="col-md-4">
-                <div className="card">
-                    <img src="https://via.placeholder.com/150" className="card-img-top" alt="Produto 3" />
-                    <div className="card-body">
-                    <h5 className="card-title">Produto 3</h5>
-                    <p className="card-text">Descrição breve do produto 3.</p>
-                    <a href="#" className="btn btn-success">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-                </div>
+                {
+                    products.map(product => (
+                        <div className="col-md-3" key={product.id}>
+                            <div className="card h-100">
+                                <h3 className="text-center text-capitalize mt-3 mb-4">{product.category}</h3>
+                                <img src={product.image} className="object-fit-contain p-3" alt={product.title} style={{ maxWidth: '290px', maxHeight: '290px' }} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{product.title}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )
