@@ -13,7 +13,7 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
-
+    
     const capitalize = (string) => {
         return string
             .split(' ')
