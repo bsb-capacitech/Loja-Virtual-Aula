@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import PropTypes from "prop-types"
 import Loader from '../components/Loader'
 import QuickViewModal from '../components/QuickViewModal'
 
-function Products() {
+function Products({ addToCart }) {
     const navigate = useNavigate()
     const location = useLocation()
     const query = new URLSearchParams(location.search)
@@ -136,10 +137,11 @@ function Products() {
                                         <span role="img" aria-label="High Voltage Emoji">⚡ </span>
                                         Detalhes Rápidos
                                     </button>
-                                    <a href={`/produto/${product.id}`} className="btn btn-outline-primary">
+                                    <Link to={`/produto/${product.id}`} className="btn btn-outline-primary">
                                         <span role="img" aria-label="Plus Emoji">➕ </span>
                                         Mais Detalhes
-                                    </a>
+                                    </Link>
+                                    <button className="btn btn-success mt-2" onClick={() => addToCart(product)}>Adicionar ao Carrinho</button>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +161,10 @@ function Products() {
 
         </div>
     )
+}
+
+Products.propTypes = {
+    addToCart: PropTypes.func.isRequired,
 }
 
 export default Products
