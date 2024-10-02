@@ -5,7 +5,7 @@ import Loader from '../components/Loader'
 import QuickViewModal from '../components/QuickViewModal'
 
 function Products() {
-    const { addToCart } = useCart
+    const { addToCart } = useCart()
     const navigate = useNavigate()
     const location = useLocation()
     const query = new URLSearchParams(location.search)

@@ -4,7 +4,7 @@ import { useCart } from '../hooks/useCart'
 import Loader from '../components/Loader'
 
 function ProductDetails() {
-    const { addToCart } = useCart
+    const { addToCart } = useCart()
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const { id } = useParams()

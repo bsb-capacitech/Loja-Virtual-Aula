@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useCart } from "../hooks/useCart"
 
 function ShoppingCart() {
-    const { cartItems, updateQuantity, removeFromCart } = useCart
+    const { cartItems, updateQuantity, removeFromCart } = useCart()
 
     const handleUpdateQuantity = (id, typeAction) => {
         updateQuantity(id, typeAction)

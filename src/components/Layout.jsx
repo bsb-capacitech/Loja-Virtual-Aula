@@ -1,7 +1,10 @@
 import { Outlet, NavLink } from 'react-router-dom'
+import { useCart } from '../hooks/useCart'
 import styles from './Layout.module.css'
 
-function Layout({ cartItems }) {
+function Layout() {
+    const { cartItems } = useCart()
+
     return (
         <div className="d-flex flex-column min-vh-100">
             <nav className={`navbar navbar-expand-lg navbar-dark bg-dark ${styles.navbar}`}>
