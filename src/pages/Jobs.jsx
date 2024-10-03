@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 function Jobs() {
     return (
       <div className="container mt-5">
@@ -33,4 +35,4 @@ function Jobs() {
     );
 };
 
-export default Jobs
+export default memo(Jobs)

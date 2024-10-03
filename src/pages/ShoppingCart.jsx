@@ -1,51 +1,59 @@
-import { Link } from "react-router-dom"
-import { useCart } from "../hooks/useCart"
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../hooks/useCart'
+import { useAuth } from '../hooks/useAuth'
+import ShoppingCartItem from '../components/ShoppingCartItem'
+import { useCartTotal } from '../hooks/useCartTotal'
 
 function ShoppingCart() {
-    const { cartItems, updateQuantity, removeFromCart } = useCart()
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
+  const calcTotal = useCartTotal(cartItems);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-    const handleUpdateQuantity = (id, typeAction) => {
-        updateQuantity(id, typeAction)
+  const handleUpdateQuantity = (id, typeAction) => {
+    updateQuantity(id, typeAction);
+  };
+
+  const handleRemoveFromCart = (id) => {
+    removeFromCart(id);
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      // Redireciona para login se o usuário não estiver logado
+      navigate('/login', { state: { from: '/checkout' } });
+    } else {
+      // Se o usuário estiver logado, vai para a página de checkout
+      navigate('/checkout');
     }
-    
-    const handleRemoveFromCart = (id) => {
-        removeFromCart(id)
-    }
+  };
 
-    const calcTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)
-    }
+  return (
+    <div className="container">
+      <h2>Carrinho de Compras</h2>
+      <ul className="list-group">
+        {
+          cartItems.map(item => (
+            <ShoppingCartItem
+              key={item.id}
+              item={item}
+              handleUpdateQuantity={handleUpdateQuantity}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
+          ))
+        }
+      </ul>
+      <h3>Total: R$ {calcTotal}</h3>
 
-    return (
-        <div className="container">
-            <h2>Carrinho de Compras</h2>
-            <ul className="list-group">
-                {
-                    cartItems.map(item => (
-                        <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5>{item.title}</h5>
-                                <div className="d-flex align-items-center">
-                                    <buttton className="btn btn-secondary" onClick={handleUpdateQuantity(item.id, 'decrease')}>-</buttton>
-                                    <span className="mx-2">{item.quantity}</span>
-                                    <buttton className="btn btn-secondary" onClick={handleUpdateQuantity(item.id, 'increase')}>+</buttton>
-                                </div>
-                            </div>
+      <Link to="/produtos" className="btn btn-primary">
+        Continuar Comprando
+      </Link>
 
-                            <span>R$ {(item.price * item.quantity).toFixed(2)}</span>
-                            <button className="btn btn-danger" onClick={handleRemoveFromCart(item.id)}>Remover</button>
-                        </li>
-                    ))
-                }
-            </ul>
-
-            <h3>Total: R$ {calcTotal()}</h3>
-
-            <Link to="/produtos" className="btn btn-primary">
-                Continuar comprando
-            </Link>
-        </div>
-    )
+      <button className="btn btn-success mx-3" onClick={handleCheckout}>
+        Finalizar Compra
+      </button>
+    </div>
+  );
 }
 
 export default ShoppingCart

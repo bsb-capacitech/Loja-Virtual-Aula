@@ -1,6 +1,14 @@
+import { useEffect, memo } from 'react';
 import { Link } from 'react-router-dom'
+import { useCart } from '../hooks/useCart';
 
 function Success() {
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
+
   return (
     <div className="container text-center mt-5">
       <h2>Compra Realizada com Sucesso!</h2>
@@ -12,4 +20,4 @@ function Success() {
   );
 }
 
-export default Success
+export default memo(Success);

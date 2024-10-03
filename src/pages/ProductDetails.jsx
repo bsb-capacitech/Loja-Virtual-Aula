@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
 import Loader from '../components/Loader'
@@ -33,4 +33,4 @@ function ProductDetails() {
     )
 }
 
-export default ProductDetails
+export default memo(ProductDetails)
