@@ -69,7 +69,7 @@ function Layout() {
                         {
                             user ? (
                                 <>
-                                    <span className="navbar-text text-ligth me-3">
+                                    <span className="navbar-text text-light me-3 mx-3">
                                         Olá, {user.displayName || user.email}
                                     </span>
                                     <button className="btn btn-outline-light" onClick={logout}>
@@ -77,7 +77,7 @@ function Layout() {
                                     </button>
                                 </>
                             ) : (
-                                <NavLink className="btn btn-outline-ligth mx-3" to="/login">
+                                <NavLink className="btn btn-light mx-3" to="/login">
                                     Login
                                 </NavLink>
                             )
