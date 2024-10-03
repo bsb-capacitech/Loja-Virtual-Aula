@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 function About() {
     return (
       <dive className="containr mt-5">
@@ -17,4 +19,4 @@ function About() {
     );
   };
 
-export default About
+export default memo(About)

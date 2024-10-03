@@ -1,7 +1,7 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useState, memo } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { auth, googleProvider } from '../../firebase'
 import { useAuth } from "../hooks/useAuth"
-import { useState } from "react"
 
 function Login() {
     const { login } = useAuth()
@@ -136,8 +136,10 @@ function Login() {
             >
                 Login com Google
             </button>
+
+            <p>Não tem uma conta? <Link to="/criar-conta">Crie sua conta</Link></p>
         </div>
     )
 }
 
-export default Login
+export default memo(Login)

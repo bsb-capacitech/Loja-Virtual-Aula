@@ -15,6 +15,7 @@ import Checkout from "./pages/Checkout"
 import Success from "./pages/Success"
 import PrivateRoute from "./components/PrivateRoute"
 import PurchaseHistory from "./pages/PurchaseHistory"
+import CreateAccount from "./pages/CreateAccount"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="produto/:id" element={<ProductDetails />} />
             <Route path="carrinho" element={<ShoppingCart />} />
             <Route path="login" element={<Login />} />
+            <Route path="criar-conta" element={<CreateAccount />} />
             <Route path="chekout" element={
               <PrivateRoute>
                 <Checkout />

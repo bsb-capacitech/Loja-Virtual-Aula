@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useCart } from '../context/useCart';
+import { useCart } from '../hooks/useCart';
 
 function PurchaseHistory() {
   const { purchaseHistory } = useCart();

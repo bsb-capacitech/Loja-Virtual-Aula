@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 function Contact() {
     return (
         <div className="container mt-5">
@@ -28,4 +30,4 @@ function Contact() {
     );
 };
 
-export default Contact
+export default memo(Contact)
