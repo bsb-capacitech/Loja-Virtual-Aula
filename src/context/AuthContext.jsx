@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react"
+import { createContext, useCallback, useReducer } from "react"
 import PropTypes from "prop-types"
 
 export const AuthContext = createContext()
@@ -24,13 +24,13 @@ function authReducer(state, action) {
 export function AuthProviver({ children }) {
     const [state, dispatch] = useReducer(authReducer, initialState)
 
-    const login = (user) => {
+    const login = useCallback((user) => {
         dispatch({ type: LOGIN, payload: user })
-    }
+    }, [])
 
-    const logout = () => {
+    const logout = useCallback(() => {
         dispatch({ type: LOGOUT })
-    }
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user: state.user, login, logout }}>

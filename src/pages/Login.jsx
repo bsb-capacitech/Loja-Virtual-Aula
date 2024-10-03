@@ -5,7 +5,7 @@ import { useAuthentication } from '../hooks/useAuthentication'
 
 function Login() {
   const { fetchUserDetails } = useFetchUserDetails();
-  const { handleLogin, handleManualLogin, error: errorAuth } = useAuthentication(auth);
+  const { handleSocialLogin, handleManualLogin, error: errorAuth } = useAuthentication(auth);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ function Login() {
 
       <button
         className="btn btn-danger m-2"
-        onClick={() => handleLogin(googleProvider)}
+        onClick={() => handleSocialLogin(googleProvider)}
       >
         Login com Google
       </button>
