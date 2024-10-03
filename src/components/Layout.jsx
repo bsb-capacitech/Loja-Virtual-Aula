@@ -30,6 +30,14 @@ function Layout() {
                             <li className="nav-item">
                                 <NavLink
                                     className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                                    to="/produtos"
+                                >
+                                    Produtos
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                                     to="/sobre"
                                 >
                                     Sobre
@@ -86,7 +94,7 @@ function Layout() {
                 </div>
             </nav>
 
-            <div className={`container ${styles.mainComponent} mt-4 mb-3`}>
+            <div className={`container ${styles.mainContent} mt-4 mb-3`}>
                 <Outlet />
             </div>
 
