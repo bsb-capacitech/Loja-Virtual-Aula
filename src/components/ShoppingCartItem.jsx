@@ -19,7 +19,7 @@ function ShoppingCartItem ({ item, handleUpdateQuantity, handleRemoveFromCart })
 };
 
 ShoppingCartItem.propTypes = {
-  item: PropTypes.objectOf(PropTypes.string).isRequired,
+  item: PropTypes.object.isRequired,
   handleUpdateQuantity: PropTypes.func.isRequired,
   handleRemoveFromCart: PropTypes.func.isRequired,
 }

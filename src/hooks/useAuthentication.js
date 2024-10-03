@@ -34,6 +34,8 @@ export function useAuthentication(auth) {
             })
       }).then(res=>res.json()).then(json=>console.log(json))
 
+      console.log(response)
+
       if (response.data.token) {
         const userDetails = await fetchUserDetails(username);
         if (userDetails) {
