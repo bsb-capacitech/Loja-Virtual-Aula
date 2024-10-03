@@ -26,6 +26,8 @@ export function useAuthentication(auth) {
 
   const handleManualLogin = async (username, password, fetchUserDetails, setError) => {
     try {
+
+      console.log('https://fakestoreapi.com/auth/login')
       const response = await fetch('https://fakestoreapi.com/auth/login', {
             method:'POST',
             body:JSON.stringify({
