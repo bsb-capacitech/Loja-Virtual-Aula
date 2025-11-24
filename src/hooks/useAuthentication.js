@@ -19,8 +19,8 @@ export function useAuthentication(auth) {
 
         navigate(from)
     } catch (error) {
-        setErrorAuth(err.message);
-        alert('Erro no login:', err);
+        setErrorAuth(error.message);
+        alert('Erro no login:', error);
     }
   }
 

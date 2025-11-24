@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 function About() {
     return (
-      <dive className="containr mt-5">
+      <div className="container mt-5">
         <div className="row">
           <div className="col">
             <h1>Sobre Nós</h1>
@@ -15,7 +15,7 @@ function About() {
             </p>
           </div>
         </div>
-      </dive>
+      </div>
     );
   };
 

@@ -63,7 +63,7 @@ function Layout() {
                     </div>
 
                     <div className="d-flex align-items-center">
-                        <NavLink className="nav-link" to="/carrinho">
+                        <NavLink aria-label="Carrinho" className="nav-link" to="/carrinho">
                             <i className='fas fa-shopping-cart fa-lg text-white'></i>
                             {
                                 cartItems.length > 0 && (
